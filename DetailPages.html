@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">			
+			img {
+				width: 500px;
+				height: 600px;
+				float: left;
+			}
+			
+			#box {
+				width: 545px;
+				height: 600px;
+				background: antiquewhite;
+				float: left;
+			}
+			
+			#box_1 {
+				width: 100%;
+				height: 100px;
+				margin-top: 30px;
+			}
+			
+			p>span {
+				color: red;
+			}
+			
+			button {
+				width: 100px;
+				height: 33px;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="nav"></div>
+
+		<img src="img/592bf164N56d3e3db.jpg" />
+		<div id="box">
+			<span style="font-size: 22px;" id="sj">JavaScript设计模式 </span>
+			<div id="box_1">
+				百度前端专家力作 百度前端高级工程师鼎力推荐 web前端开发人员参考书 Web前端设计模式指南
+			</div>
+			<div id="box_2">
+				<span>作者:张瑞敏</span>
+				<p>出版社:新华书店</p>
+				<p>友情价格:<span style="font-size: 30px;">¥</span><span style="font-size: 25px;" id="ospan">50.20</span></p>
+			</div>
+			<button style="color: white;background: red;" id="btn1">加入购物车</button>
+			<button style="background: #ffedee;" id="btn2">立即购买</button>
+		</div>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('#nav').load('nav.html');
+		var img = document.getElementsByTagName("img")[0];
+		var id = location.search.substr(3);
+		$.ajax({
+			type: "post",
+			url: "php/newshuju.php",
+			async: true,
+			dataType: "json",
+			success: function(data) {
+				for(i in data) {
+					console.log(data[i])
+					if(data[i][3] === id) {
+						img.src = "php/myimgs/" + data[i][2];
+						$("#sj").html(data[i][0]);
+						$("#box_1").html(data[i][2]);
+						$("#ospan").html(data[i][1]);
+						alert(5)
+						+65+65+6
+						
+					}
+				}
+			}
+		});
+	</script>
+
+</html>
